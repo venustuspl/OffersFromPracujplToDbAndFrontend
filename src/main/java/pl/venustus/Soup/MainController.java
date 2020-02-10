@@ -2,7 +2,6 @@ package pl.venustus.Soup;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,16 +29,16 @@ public class MainController {
     }
 
     @GetMapping("/api/offers")
-    public List<Element> getOffers() {
+    public List<String> getOffers() {
         try {
-            List result = new ArrayList();
+            List<String> result = new ArrayList();
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
-            Elements elements = document.select("a.class.offer-details__title-link");
-            for (Element element : elements){
-                result.add(element);
+            Elements elements = document.select("a[class=offer-details__title-link]");
+            for (Element element : elements) {
+                result.add(element.ownText());
             }
 
-            return elements;
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
