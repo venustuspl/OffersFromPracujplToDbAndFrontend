@@ -17,8 +17,12 @@ public class TrialClass {
             Elements elements = document.select("a[class=offer-details__title-link]");
             //System.out.println(elements);
             for (Element element : elements) {
-                System.out.println(element);
+                System.out.println(element.getElementsByAttribute("href"));
             }
+            elements.stream()
+                    .map(e -> ("https://pracuj.pl" + e.attr("href")))
+                    .forEach(System.out::println);
+
             System.out.println("End");
 
 

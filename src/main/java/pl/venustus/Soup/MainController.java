@@ -35,7 +35,7 @@ public class MainController {
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
             Elements elements = document.select("a[class=offer-details__title-link]");
             for (Element element : elements) {
-                result.add(element.ownText());
+                result.add(element.ownText() + " - " + "https://pracuj.pl" + element.attr("href"));
             }
 
             return result;
