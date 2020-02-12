@@ -22,6 +22,9 @@ dependencies {
 	}
 
 	compile 'org.jsoup:jsoup:1.12.2'
+	compile 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
 
 }
 
