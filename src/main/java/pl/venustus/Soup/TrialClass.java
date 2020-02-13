@@ -14,9 +14,14 @@ public class TrialClass {
         try {
             List result = new ArrayList();
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
-            Elements elements = document.select("a[class=offer-details__text]");
-            for (Element element : elements) {
+            Elements elements = document.select("div[class=offer-details__text]");
+            Elements elements1 = elements.select(".offer-company");
+            System.out.println(elements.size());
+            System.out.println(elements1.size());
+            for (Element element : elements1) {
                 System.out.println(element.getElementsByAttribute("href"));
+                System.out.println(element.getElementsByAttribute("href.offer-company__name"));
+
             }
 
             System.out.println("End");
