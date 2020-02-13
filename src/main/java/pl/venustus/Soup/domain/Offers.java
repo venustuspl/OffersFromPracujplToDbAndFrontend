@@ -6,6 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
+
+@NamedNativeQuery(
+        name = "Offers.checkIfOfferExists",
+        query = "SELECT * FROM OFFER WHERE URL = :URL ",
+        resultClass = Offers.class
+)
 
 @Entity
 @NoArgsConstructor
@@ -21,7 +29,10 @@ public class Offers {
 
     private String name;
 
+    @Column(name = "URL", unique = true)
     private String url;
+
+    private LocalDateTime dateTime = LocalDateTime.now();
 
 
 }

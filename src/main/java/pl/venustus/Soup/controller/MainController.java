@@ -63,14 +63,16 @@ public class MainController {
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
             Elements elements = document.select("a[class=offer-details__title-link]");
             for (Element element : elements) {
-                offersRepository.save(modelMapper.map(new OffersDto(element.ownText(), ("https://pracuj.pl" + element.attr("href"))), Offers.class));
-                i++;
+                if (offersRepository.checkIfOfferExists("https://pracuj.pl" + element.attr("href")).size() <= 0) {
+                    offersRepository.save(modelMapper.map(new OffersDto(element.ownText(), ("https://pracuj.pl" + element.attr("href"))), Offers.class));
+                    i++;
+                }
             }
             return i;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return 0;
     }
 
 }
