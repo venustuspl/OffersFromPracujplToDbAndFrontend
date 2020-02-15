@@ -19,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class MainController {
+public class OfferController {
 
     @Autowired
     OffersRepository offersRepository;
@@ -27,7 +27,7 @@ public class MainController {
     @Autowired
     ModelMapper modelMapper;
 
-    @GetMapping("/api/offerscount")
+    @GetMapping("/api/online/offerscount")
     public String getOffersCount() {
         try {
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
@@ -39,8 +39,8 @@ public class MainController {
         return null;
     }
 
-    @GetMapping("/api/offers")
-    public List<String> getOffers() {
+    @GetMapping("/api/online/offers")
+    public List<String> getOnlineOffers() {
         try {
             List<String> result = new ArrayList();
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
@@ -54,6 +54,15 @@ public class MainController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @GetMapping("/api/db/offers")
+    public Iterable<Offers> getDbOffers() {
+
+        Iterable<Offers> result;
+        result = offersRepository.findAll();
+
+        return result;
     }
 
     @GetMapping("/api/savenewoffers")
