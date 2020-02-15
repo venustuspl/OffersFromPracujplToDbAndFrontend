@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.venustus.Soup.domain.Offers;
-import pl.venustus.Soup.domain.OffersDto;
-import pl.venustus.Soup.repository.OffersRepository;
+import pl.venustus.Soup.domain.Offer;
+import pl.venustus.Soup.domain.OfferDto;
+import pl.venustus.Soup.repository.OfferRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.List;
 public class OfferController {
 
     @Autowired
-    OffersRepository offersRepository;
+    OfferRepository offerRepository;
 
     @Autowired
     ModelMapper modelMapper;
@@ -57,10 +57,10 @@ public class OfferController {
     }
 
     @GetMapping("/api/db/offers")
-    public Iterable<Offers> getDbOffers() {
+    public Iterable<Offer> getDbOffers() {
 
-        Iterable<Offers> result;
-        result = offersRepository.findAll();
+        Iterable<Offer> result;
+        result = offerRepository.findAll();
 
         return result;
     }
@@ -72,8 +72,8 @@ public class OfferController {
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
             Elements elements = document.select("a[class=offer-details__title-link]");
             for (Element element : elements) {
-                if (offersRepository.checkIfOfferExists("https://pracuj.pl" + element.attr("href")).size() <= 0) {
-                    offersRepository.save(modelMapper.map(new OffersDto(element.ownText(), ("https://pracuj.pl" + element.attr("href"))), Offers.class));
+                if (offerRepository.checkIfOfferExists("https://pracuj.pl" + element.attr("href")).size() <= 0) {
+                    offerRepository.save(modelMapper.map(new OfferDto(element.ownText(), ("https://pracuj.pl" + element.attr("href"))), Offer.class));
                     i++;
                 }
             }

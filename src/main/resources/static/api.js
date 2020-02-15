@@ -1,4 +1,4 @@
--function createNode(element) {
+function createNode(element) {
     return document.createElement(element); // Create the type of element you pass in the parameters
 }
 
@@ -15,7 +15,7 @@ fetch("api/db/offers")
         return offers.map(function (offer) { // Map through the results and for each run the code below
             let li = createNode('li'), //  Create the elements we need
                 span = createNode('span');
-            li.innerHTML = `${user.id} ${user.email}`; // Make the HTML of our span to be the first and last name of our author
+            li.innerHTML = `${offer.name} ${offer.url}`; // Make the HTML of our span to be the first and last name of our author
             append(li, span);
             append(ul, li);
         })

@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 
 
 @NamedNativeQuery(
-        name = "Offers.checkIfOfferExists",
+        name = "Offer.checkIfOfferExists",
         query = "SELECT * FROM OFFER WHERE URL = :URL ",
-        resultClass = Offers.class
+        resultClass = Offer.class
 )
 
 @Entity
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "OFFER")
-public class Offers {
+public class Offer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

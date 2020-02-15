@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OffersDto {
+public class OfferDto {
 
     private String name;
     private String url;
