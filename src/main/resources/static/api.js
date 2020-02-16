@@ -15,9 +15,38 @@ fetch("api/db/offers")
         return offers.map(function (offer) { // Map through the results and for each run the code below
             let li = createNode('li'), //  Create the elements we need
                 span = createNode('span');
-            li.innerHTML = `${offer.name} ${offer.url}`; // Make the HTML of our span to be the first and last name of our author
+            li.innerHTML = `${offer.name} ${offer.url} ${offer.dateTime}`; // Make the HTML of our span to be the first and last name of our author
             append(li, span);
             append(ul, li);
         })
     })
 
+const oc = document.getElementById('offerscount');
+
+fetch("api/online/offerscount")
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function (data) {
+
+        // Map through the results and for each run the code below
+        let li = createNode('li'), //  Create the elements we need
+            span = createNode('span');
+        li.innerHTML = `${data}`; // Make the HTML of our span to be the first and last name of our author
+        append(li, span);
+        append(oc, li);
+
+    })
+
+const os = document.getElementById('savenewoffers');
+
+fetch("/api/savenewoffers")
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function (data) {
+
+        // Map through the results and for each run the code below
+        let li = createNode('li'), //  Create the elements we need
+            span = createNode('span');
+        li.innerHTML = `${data}`; // Make the HTML of our span to be the first and last name of our author
+        append(li, span);
+        append(os, li);
+
+    })
