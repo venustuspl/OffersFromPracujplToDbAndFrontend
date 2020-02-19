@@ -63,7 +63,7 @@ fetch("api/db/offers")
         return offers.map(function (offer) { // Map through the results and for each run the code below
             let li = createNode('li'), //  Create the elements we need
                 span = createNode('span');
-            li.innerHTML = `${offer.name} ${offer.url} ${offer.dateTime}`; // Make the HTML of our span to be the first and last name of our author
+            li.innerHTML = `Nazwa oferty: ${offer.name} |Link:  <a>${offer.url}</a> <br>|Data zapisu do bazy: ${offer.dateTime}`; // Make the HTML of our span to be the first and last name of our author
             append(li, span);
             append(ul, li);
         })

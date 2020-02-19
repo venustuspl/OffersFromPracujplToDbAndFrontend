@@ -1,9 +1,8 @@
 body {
-	font-family: Arial;
-	font-size: 12px;
+	font-family: Roboto;
+	font-size: 14px;
 	color: #666;
-	text-align: center;
-	margin: 0;
+	margin: 100px;
 }
 
 #wrapper {
@@ -120,10 +119,6 @@ a:hover {
 	background: #EEE;
 	padding: 5px;
 	margin-top: 30px;
-}
-
-#container img {
-	padding-right: 10px;
 }
 
 h2 {
