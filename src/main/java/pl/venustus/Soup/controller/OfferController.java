@@ -14,8 +14,10 @@ import pl.venustus.Soup.domain.OfferDto;
 import pl.venustus.Soup.repository.OfferRepository;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -57,10 +59,12 @@ public class OfferController {
     }
 
     @GetMapping("/api/db/offers")
-    public Iterable<Offer> getDbOffers() {
+    public List<OfferDto> getDbOffers() {
 
-        Iterable<Offer> result;
-        result = offerRepository.findAll();
+        List<OfferDto> result;
+        result = offerRepository.findAll().stream()
+                .map(offer -> modelMapper.map(offer, OfferDto.class))
+                .collect(Collectors.toList());
 
         return result;
     }
@@ -71,9 +75,10 @@ public class OfferController {
         try {
             Document document = Jsoup.connect("https://www.pracuj.pl/praca/junior%20java%20developer;kw/warszawa;wp").get();
             Elements elements = document.select("a[class=offer-details__title-link]");
+            LocalDateTime now = LocalDateTime.now();
             for (Element element : elements) {
                 if (offerRepository.checkIfOfferExists("https://pracuj.pl" + element.attr("href")).size() <= 0) {
-                    offerRepository.save(modelMapper.map(new OfferDto(element.ownText(), ("https://pracuj.pl" + element.attr("href"))), Offer.class));
+                    offerRepository.save(modelMapper.map(new OfferDto(element.ownText(), ("https://pracuj.pl" + element.attr("href")), now), Offer.class));
                     i++;
                 }
             }

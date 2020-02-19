@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface OfferRepository extends CrudRepository<Offer, Long> {
 
+        @Override
+        List<Offer> findAll();
+
         @Query(nativeQuery = true)
         List<Offer> checkIfOfferExists(@Param("URL") String url);
 }
