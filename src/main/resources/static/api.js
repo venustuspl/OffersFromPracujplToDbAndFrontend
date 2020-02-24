@@ -68,4 +68,3 @@ fetch("api/db/offers")
             append(ul, li);
         })
     });
-

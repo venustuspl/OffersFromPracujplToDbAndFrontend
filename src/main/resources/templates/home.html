@@ -5,6 +5,11 @@
     <title>Work offers portal</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
 </head>
 <body>
 
@@ -24,9 +29,59 @@
 <a id="savenewoffers" align="right">Podczas otwarcia strony lokalna baza została zaktualizowana o następującą liczbę
     ofert: </a>
 
+<br>
+
 <div align="center" class="fb-like" data-href="https://www.facebook.com/Venustuspl/" data-width=""
      data-layout="standard" data-action="like"
-     data-size="small" data-share="true"></div>
+     data-size="large" data-share="true"></div>
+
+<br>
+<br>
+<button id="open-contact-btn" class="about-link" align="center">
+    <i class="fa fa-envelope-o" aria-hidden="true"></i> Formularz kontaktowy
+</button>
+
+<!--<button id="open-contact-btn" class="main-btn">
+    <i class="fa fa-envelope-o" aria-hidden="true"></i> Formularz kontaktowy
+</button>
+-->
+<div id="formularz-kontaktowy" class="contact" role="dialog" aria-label="Formularz kontaktowy" aria-hidden="true">
+    <form class="emailForm" method="POST" action="https://formspree.io/strony.warszawa@gmail.com">
+        <label class="half" aria-live="polite">
+            Twój email
+            <input class="form-data" name="email" type="email" placeholder="Wpisz tu twój email" required>
+        </label>
+        <label class="half" aria-live="polite">
+            Temat
+            <input class="form-data" name="_subject" placeholder="Wpisz tu temat wiadomości" minlength="4"
+                   maxlength="78"
+                   required>
+        </label>
+        <label aria-live="polite">
+            Wiadomość
+            <textarea class="form-data" name="message" placeholder="Wpisz tu twoją wiadomość" minlength="4"
+                      maxlength="6000" required></textarea>
+        </label>
+        <label class="recaptcha-label" aria-live="polite">
+            <div class="g-recaptcha" tabindex="-1" data-sitekey="6Lfw29sUAAAAAFJoiApVzmjnz2xDrdAkVt72NIX_"
+                 data-callback="recaptchaClearErr"></div>
+        </label>
+        <button class="emailFormSubmit main-btn" name="submit" type="submit">Wyślij</button>
+
+        <div class="emailFormAlert" aria-live="polite"></div>
+    </form>
+
+    <button type="button" id="close-contact-btn" class="close-btn" aria-label="Zamknij formularz kontaktowy"
+            title="Zamknij formularz kontaktowy">
+        <i class="fa fa-times close-form"></i>
+    </button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="emailform.js"></script>
+
+
 </body>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
