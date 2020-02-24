@@ -32,7 +32,7 @@ public class Offer {
     @Column(name = "URL", unique = true)
     private String url;
 
-    private LocalDateTime dateTime = LocalDateTime.now();
+    private LocalDateTime dateTime;
 
 
 }

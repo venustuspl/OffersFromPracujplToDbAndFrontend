@@ -16,6 +16,7 @@ import pl.venustus.Soup.repository.OfferRepository;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +65,7 @@ public class OfferController {
         List<OfferDto> result;
         result = offerRepository.findAll().stream()
                 .map(offer -> modelMapper.map(offer, OfferDto.class))
+                .sorted(Comparator.comparing(OfferDto::getDateTime).reversed())
                 .collect(Collectors.toList());
 
         return result;
