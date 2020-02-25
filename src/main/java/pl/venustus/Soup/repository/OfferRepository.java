@@ -12,6 +12,9 @@ public interface OfferRepository extends CrudRepository<Offer, Long> {
         @Override
         List<Offer> findAll();
 
+        @Override
+        long count();
+
         @Query(nativeQuery = true)
         List<Offer> checkIfOfferExists(@Param("URL") String url);
 }

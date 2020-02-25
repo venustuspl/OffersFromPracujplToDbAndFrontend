@@ -29,6 +29,7 @@ dependencies {
 	compile 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0'
+	compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
 
 }
 
