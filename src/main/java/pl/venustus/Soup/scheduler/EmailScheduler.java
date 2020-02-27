@@ -19,7 +19,7 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "*/5 * * * *")
     public void sendInformationEmail() {
         long size = offerRepository.count();
         simpleEmailService.send(new Mail(

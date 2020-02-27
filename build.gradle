@@ -18,8 +18,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	
-	//runtimeOnly 'mysql:mysql-connector-java'
-	compile 'org.postgresql:postgresql'
+	runtimeOnly 'mysql:mysql-connector-java'
+	//compile 'org.postgresql:postgresql'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
