@@ -79,6 +79,17 @@ public class OfferController {
         return result;
     }
 
+    @GetMapping("/api/db/last/offerdatetime")
+    public LocalDateTime getLastOfferDateTime() {
+
+        LocalDateTime result = LocalDateTime.now();
+        System.out.println(result);
+        result = offerRepository.getLastOfferDate();
+        System.out.println(result);
+        return result;
+    }
+
+
     @GetMapping("/api/savenewoffers")
     public Integer savenewoffers() {
         Integer i = 0;

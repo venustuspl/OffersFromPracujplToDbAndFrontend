@@ -25,8 +25,8 @@ import java.time.LocalDateTime;
 
 @NamedNativeQuery(
         name = "Offer.getLastOfferDate",
-        query = "SELECT MAX(DATETIME) FROM OFFER",
-        resultClass = Offer.class
+        query = "SELECT MAX(DATE_TIME) FROM OFFER"
+
 )
 
 
@@ -47,6 +47,7 @@ public class Offer {
     @Column(name = "URL", unique = true)
     private String url;
 
+    @Column(name = "DATE_TIME")
     private LocalDateTime dateTime;
 
 

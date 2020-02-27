@@ -16,6 +16,9 @@ import pl.venustus.Soup.domain.Mail;
 import pl.venustus.Soup.repository.OfferRepository;
 import pl.venustus.Soup.service.SimpleEmailService;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 @Component
 public class EmailScheduler {
 
@@ -27,14 +30,16 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     public void sendInformationEmail() {
         long size = offerRepository.count();
+        LocalDateTime last = offerRepository.getLastOfferDate();
         simpleEmailService.send(new Mail(
                 //"venustus.pl@gmail.com",
                 adminConfig.getAdminMail(),
                 SUBJECT,
-                "Currently in database you got: " + size + (size > 1 ? " offers." : " offer.")
+                "Currently in database you got: " + size + (size > 1 ? " offers." : " offer.") + "Last offer was saved on "
+                        + last + ". And it was " + ChronoUnit.DAYS.between(last, LocalDateTime.now()) + " days ago."
         ));
     }
 }
