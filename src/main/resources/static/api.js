@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2020. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
 function createNode(element) {
     return document.createElement(element); // Create the type of element you pass in the parameters
 }
@@ -67,4 +75,19 @@ fetch("api/db/offers")
             append(li, span);
             append(ul, li);
         })
+    });
+
+const lo = document.getElementById('lastoffer');
+
+fetch("/api/db/last/offerdatetime")
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function (data) {
+
+        // Map through the results and for each run the code below
+        let li = createNode('li'), //  Create the elements we need
+            span = createNode('span');
+        li.innerHTML = `${data}`; // Make the HTML of our span to be the first and last name of our author
+        append(li, span);
+        append(lo, li);
+
     });

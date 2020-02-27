@@ -30,7 +30,7 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 0 10 * * *")
     public void sendInformationEmail() {
         long size = offerRepository.count();
         LocalDateTime last = offerRepository.getLastOfferDate();

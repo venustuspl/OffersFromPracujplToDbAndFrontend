@@ -14,6 +14,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -82,14 +83,10 @@ public class OfferController {
     @GetMapping("/api/db/last/offerdatetime")
     public LocalDateTime getLastOfferDateTime() {
 
-        LocalDateTime result = LocalDateTime.now();
-        System.out.println(result);
-        result = offerRepository.getLastOfferDate();
-        System.out.println(result);
-        return result;
+        return offerRepository.getLastOfferDate();
     }
 
-
+    @Scheduled(cron = "0 0 9 * * *")
     @GetMapping("/api/savenewoffers")
     public Integer savenewoffers() {
         Integer i = 0;
